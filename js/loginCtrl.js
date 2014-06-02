@@ -14,6 +14,7 @@ stApp.controller('LoginCtrl', function($scope, $firebase, $location) {
             // user authenticated with Firebase
             $location.path('home/dashboard');
             console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+	    console.log(user.email);
         } else {
             // user is logged out
             console.log('logged out');
@@ -28,10 +29,11 @@ stApp.controller('LoginCtrl', function($scope, $firebase, $location) {
                 console.log(error);
             }
         });
+	console.log(auth.id);
         users.$add({
             email: auth.email,
-            username: newUser.username,
-	    id: auth.id
+            username: newUser.username/*,
+	    id: auth.id*/
         });
 
         newUser.username = "";
