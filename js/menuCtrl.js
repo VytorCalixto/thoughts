@@ -20,5 +20,6 @@ stApp.controller('MenuCtrl',function($scope, $firebase, $location){
     
     $scope.logout = function(){
         auth.logout();
+	$location.path('/signup');
     };
 })

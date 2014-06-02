@@ -29,13 +29,15 @@ stApp.controller('LoginCtrl', function($scope, $firebase, $location) {
             }
         });
         users.$add({
-            email: newUser.email,
-            username: newUser.username
+            email: auth.email,
+            username: newUser.username,
+	    id: auth.id
         });
 
         newUser.username = "";
         newUser.email = "";
         newUser.password = "";
+	$location.path('home/dashboard');
     };
 
     $scope.login = function(user) {
