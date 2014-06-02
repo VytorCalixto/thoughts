@@ -1,0 +1,37 @@
+<ion-view title="Thoughts" hide-back-button="true">
+    <ion-nav-buttons side="right">
+        <a href="" class="button button-clear button-light icon ion-compose" ng-click="newThought()"></a>
+    </ion-nav-buttons>
+    <ion-content class="page">
+        <ion-list class="padding">
+            <ion-item class="item-divider">
+                Last Thoughts
+            </ion-item>
+            <ion-item ng-repeat="thought in thoughts| orderByPriority">
+                {{thought.text}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+<script id="new-thought.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar class="bar-secondary">
+            <h1 class="title">New Thought</h1>
+            <button class="button button-clear" ng-click="closeNewThought(thought.text)">Cancelar</button>
+        </ion-header-bar>
+        
+        <ion-content>
+            <form ng-submit="createNewThought(thought)">
+                <div class="list">
+                    <textarea ng-model="thought.text" class="item item-input textarea" wrap="soft"></textarea>
+                </div>
+                <div class="padding">
+                    <button type="submit" class="button button-block button-positive item icon ion-ios7-cloud-outline">
+                        Think
+                    </button>
+                </div>
+            </form>
+        </ion-content>
+    </div>
+</script>

@@ -1,0 +1,26 @@
+<ion-view title="Thoughts" hide-back-button="true">
+    <ion-nav-buttons side="right">
+        <a href="#/login" class="button button-clear button-light">Login</a>
+    </ion-nav-buttons>
+    <ion-content class="padding pattern">
+        <form ng-submit="createNewUser(newUser)">
+            <div class="login list list-inset">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="newUser.username" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">E-mail</span>
+                    <input type="email" ng-model="newUser.email" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="newUser.password" required>
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-positive button-block">Sign Up</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

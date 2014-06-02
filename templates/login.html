@@ -1,0 +1,19 @@
+<ion-view title="Thoughts">
+    <ion-content class="padding pattern">
+        <form ng-submit="login(user)">
+            <div class="login list list-inset">
+                <label class="item item-input">
+                    <span class="input-label">E-mail</span>
+                    <input type="email" ng-model="user.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="user.password">
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-balanced button-block item">Login</button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
