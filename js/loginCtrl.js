@@ -12,15 +12,14 @@ stApp.controller('LoginCtrl', function($scope, $firebase, $location) {
             console.log(error);
         } else if (user) {
             // user authenticated with Firebase
-            $location.path('home/dashboard');
             console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-	    console.log(user.email);
+            $location.path('home/dashboard');
         } else {
             // user is logged out
             console.log('logged out');
         }
     });
-
+    
     $scope.createNewUser = function(newUser) {
         auth.createUser(newUser.email, newUser.password, function(error, user) {
             if (!error) {
@@ -29,17 +28,16 @@ stApp.controller('LoginCtrl', function($scope, $firebase, $location) {
                 console.log(error);
             }
         });
-	console.log(auth.id);
         users.$add({
-            email: auth.email,
+            email: newUser.email,
             username: newUser.username/*,
-	    id: auth.id*/
+            id: auth.id*/
         });
 
         newUser.username = "";
         newUser.email = "";
         newUser.password = "";
-	$location.path('home/dashboard');
+        $location.path('home/dashboard');
     };
 
     $scope.login = function(user) {

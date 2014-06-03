@@ -7444,4 +7444,10 @@ a.button {
 .gold-bg {
   background: #f0a830; }
 
+.logo {
+  width: 600px;
+  height: 500px;
+  background: url(../img/logo.png) no-repeat center top;
+  left: 50%; }
+
 /*# sourceMappingURL=style.css.map */

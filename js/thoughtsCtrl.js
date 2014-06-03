@@ -3,15 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal) {
-    var thoughtsRef = new Firebase('https://socialthoughts.firebaseio.com/thoughts');
-    $scope.thoughts = $firebase(thoughtsRef);
+stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal, $firebaseSimpleLogin) {
+    $scope.thoughts = $firebase(new Firebase('https://socialthoughts.firebaseio.com/thoughts'));
+    $scope.users = $firebase(new Firebase('https://socialthoughts.firebaseio.com/users'));
     
+    $scope.getUserById = function(userId){
+        for(var i in $scope.users){
+            if($scope.users[i].id===userId){
+                return $scope.users[i].username;
+            }
+        }
+    };
     
     $scope.createNewThought = function(thought) {
         $scope.thoughts.$add({
             text: thought.text,
-            userId: 0,
+            userId: 6,
             data: new Date().toLocaleDateString(),
             hora: new Date().toLocaleTimeString()
         });
@@ -35,4 +42,4 @@ stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal) {
         console.log(text);
     };
 
-});
+})
