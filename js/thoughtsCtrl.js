@@ -7,11 +7,7 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicM
     $scope.$root.cls='bar-logged';
     $scope.thoughts = Thoughts.get();
     $scope.users = Users.get();
-    $scope.myThoughts = getUserThoughts($rootScope.user.email);
-
-    var getUserThoughts = function(email){
-        return Thoughts.getUserThoughts(email);
-    };
+    $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
     
     $scope.getUserByEmail = function(userEmail){
         Users.getUserByEmail(email);
