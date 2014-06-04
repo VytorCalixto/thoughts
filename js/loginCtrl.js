@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location, $ionicPopup) {
+stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location, $ionicPopup, Users) {
     $scope.$root.cls='bar-calm';
-    var usersRef = new Firebase('https://socialthoughts.firebaseio.com/users');
-    var users = $firebase(usersRef);
+    var ref = new Firebase('https://socialthoughts.firebaseio.com/users');
+    var users = Users.get();
     $rootScope.user = {};
-    $rootScope.auth = new FirebaseSimpleLogin(usersRef, function(error, user) {
+    $rootScope.auth = new FirebaseSimpleLogin(ref, function(error, user) {
         if (error) {
             // an error occurred while attempting login
             console.log(error);
@@ -31,7 +31,7 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location,
                 console.log(error);
             }
         });
-        users.$add({
+        Users.push({
             email: newUser.email,
             username: newUser.username/*,
              id: auth.id*/

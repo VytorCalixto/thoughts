@@ -3,31 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $firebaseSimpleLogin) {
+stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $firebaseSimpleLogin, Users, Thoughts) {
     $scope.$root.cls='bar-logged';
-    $scope.thoughts = $firebase(new Firebase('https://socialthoughts.firebaseio.com/thoughts'));
-    $scope.users = $firebase(new Firebase('https://socialthoughts.firebaseio.com/users'));
-    $scope.myThoughts = getMyThoughts();
+    $scope.thoughts = Thoughts.get();
+    $scope.users = Users.get();
+    $scope.myThoughts = getUserThoughts($rootScope.user.email);
 
-    var getMyThoughts = function(){
-        var myThoughts = [];
-        for(var key in $scope.thoughts){
-            if($scope.thoughts[key].userEmail===$rootScope.user.email){
-                myThoughts.push($scope.thoughts[key]);
-            }
-        }
+    var getUserThoughts = function(email){
+        return Thoughts.getUserThoughts(email);
     };
     
     $scope.getUserByEmail = function(userEmail){
-        for(var i in $scope.users){
-            if($scope.users[i].email===userEmail){
-                return $scope.users[i].username;
-            }
-        }
+        Users.getUserByEmail(email);
     };
     
     $scope.createNewThought = function(thought) {
-        $scope.thoughts.$add({
+        Thoughts.push({
             text: thought.text,
             userEmail: $rootScope.user.email,
             data: new Date().toLocaleDateString(),
