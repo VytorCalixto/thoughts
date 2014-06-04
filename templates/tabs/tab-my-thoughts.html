@@ -1,0 +1,15 @@
+<ion-view title="My Thoughts">
+	<ion-nav-buttons side="right">
+        <a href="" class="button button-clear icon ion-compose" ng-click="newThought()"></a>
+    </ion-nav-buttons>
+    <ion-content class="page padding">
+        <ion-list class="list-inset">
+        	<ion-item class="item-divider">
+        		My Thoughts
+        	</ion-item>
+        	<ion-item ng-repeat="thought in myThoughts | orderByPriority">
+        		<ng-include src="'templates/thought-item.html'"></ng-include>
+		    </ion-item>
+    	</ion-list>
+    </ion-content>
+</ion-view>

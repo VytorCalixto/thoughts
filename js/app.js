@@ -28,34 +28,43 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 url: '/tab',
                 abstract: true,
                 views: {
-                    'tabs':{
+                    'tabs': {
                         templateUrl: 'templates/tabs.html'
                     }
                 }
             })
-            .state('home.tab.dashboard',{
+            .state('home.tab.dashboard', {
                 url: '/dashboard',
                 views: {
                     'tab-dashboard': {
-                        templateUrl:'templates/tab-dashboard.html',
+                        templateUrl: 'templates/tabs/tab-dashboard.html',
                         controller: 'ThoughtsCtrl'
                     }
                 }
             })
-            .state('home.tab.my-thoughts',{
+            .state('home.tab.thought-detail', {
+                url: '/dashboard/:thoughtId',
+                views: {
+                    'tab-dashboard':{
+                        templateUrl: 'templates/tabs/thought-detail.html',
+                        controller: 'ThoughtDetailCtrl'
+                    }
+                }
+            })
+            .state('home.tab.my-thoughts', {
                 url: '/my-thoughts',
                 views: {
                     'tab-my-thoughts': {
-                        templateUrl:'templates/tab-my-thoughts.html',
+                        templateUrl: 'templates/tabs/tab-my-thoughts.html',
                         controller: 'ThoughtsCtrl'
                     }
                 }
             })
-            .state('home.tab.account',{
+            .state('home.tab.account', {
                 url: '/account',
                 views: {
                     'tab-account': {
-                        templateUrl:'templates/tab-account.html',
+                        templateUrl: 'templates/tabs/tab-account.html',
                         controller: 'AccountCtrl'
                     }
                 }

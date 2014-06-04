@@ -1,5 +1,5 @@
 stApp.controller('AccountCtrl', function($rootScope, $scope, $firebase, Users){
-	var users = Users.get();
+	var users = Users.all();
 	$scope.user = Users.getUserByEmail($rootScope.user.email);
 
 })

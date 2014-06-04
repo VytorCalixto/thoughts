@@ -2,13 +2,15 @@ stApp.factory('Thoughts', function($firebase){
 	var thoughts = $firebase(new Firebase('https://socialthoughts.firebaseio.com/thoughts'));
 
 	return{
-		get: function(){
-			return thoughts;
+                all: function(){
+                    return thoughts;
+                },
+		get: function(key){
+			return thoughts[key];
 		},
 		getUserThoughts: function(email){
 			var userThoughts = [];
 			for(var key in thoughts){
-				console.log(thoughts[key].userEmail + ' ' + email);
 				if(thoughts[key].userEmail===email){
 					userThoughts.push(thoughts[key]);
 				}

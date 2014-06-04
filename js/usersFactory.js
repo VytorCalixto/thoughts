@@ -2,8 +2,11 @@ stApp.factory('Users', function($firebase){
 	var users = $firebase(new Firebase('https://socialthoughts.firebaseio.com/users'));
 
 	return{
-		get: function(){
-			return users;
+                all: function(){
+                    return users;
+                },
+		get: function(key){
+			return users[key];
 		},
 		getUserByEmail: function(email){
 			for(var key in users){

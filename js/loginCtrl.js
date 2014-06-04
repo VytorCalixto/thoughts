@@ -6,7 +6,7 @@
 stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location, $ionicPopup, Users) {
     $scope.$root.cls='bar-calm';
     var ref = new Firebase('https://socialthoughts.firebaseio.com/users');
-    var users = Users.get();
+    var users = Users.all();
     $rootScope.user = {};
     $rootScope.auth = new FirebaseSimpleLogin(ref, function(error, user) {
         if (error) {

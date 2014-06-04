@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $firebaseSimpleLogin, Users, Thoughts) {
+stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $location, Users, Thoughts) {
     $scope.$root.cls='bar-logged';
-    $scope.thoughts = Thoughts.get();
-    $scope.users = Users.get();
+    $scope.thoughts = Thoughts.all();
+    $scope.users = Users.all();
     $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
+    $scope.path = $location.absUrl();
     
 
     $scope.getUserByEmail = function(email){
