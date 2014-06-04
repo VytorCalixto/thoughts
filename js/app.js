@@ -24,12 +24,39 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 abstract: true,
                 templateUrl: 'templates/side-menu.html'
             })
-            .state('home.dashboard',{
+            .state('home.tab', {
+                url: '/tab',
+                abstract: true,
+                views: {
+                    'tabs':{
+                        templateUrl: 'templates/tabs.html'
+                    }
+                }
+            })
+            .state('home.tab.dashboard',{
                 url: '/dashboard',
                 views: {
-                    'dashboard': {
-                        templateUrl:'templates/dashboard.html',
+                    'tab-dashboard': {
+                        templateUrl:'templates/tab-dashboard.html',
                         controller: 'ThoughtsCtrl'
+                    }
+                }
+            })
+            .state('home.tab.my-thoughts',{
+                url: '/my-thoughts',
+                views: {
+                    'tab-my-thoughts': {
+                        templateUrl:'templates/tab-my-thoughts.html',
+                        controller: ''
+                    }
+                }
+            })
+            .state('home.tab.account',{
+                url: '/account',
+                views: {
+                    'tab-account': {
+                        templateUrl:'templates/tab-account.html',
+                        controller: ''
                     }
                 }
             })

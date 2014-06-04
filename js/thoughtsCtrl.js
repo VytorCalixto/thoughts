@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal, $firebaseSimpleLogin) {
+stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $firebaseSimpleLogin) {
+    $scope.$root.cls='bar-logged';
     $scope.thoughts = $firebase(new Firebase('https://socialthoughts.firebaseio.com/thoughts'));
     $scope.users = $firebase(new Firebase('https://socialthoughts.firebaseio.com/users'));
     
-    $scope.getUserById = function(userId){
+    $scope.getUserByEmail = function(userEmail){
         for(var i in $scope.users){
-            if($scope.users[i].id===userId){
+            if($scope.users[i].email===userEmail){
                 return $scope.users[i].username;
             }
         }
@@ -18,7 +19,7 @@ stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal, $fireb
     $scope.createNewThought = function(thought) {
         $scope.thoughts.$add({
             text: thought.text,
-            userId: 6,
+            userEmail: $rootScope.user.email,
             data: new Date().toLocaleDateString(),
             hora: new Date().toLocaleTimeString()
         });
@@ -39,7 +40,9 @@ stApp.controller('ThoughtsCtrl', function($scope, $firebase, $ionicModal, $fireb
 
     $scope.closeNewThought = function(text) {
         $scope.thoughtModal.hide();
-        console.log(text);
     };
-
+    
+    $scope.comments = function(thoughtId){
+        return 0;
+    };
 })

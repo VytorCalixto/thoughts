@@ -21,7 +21,9 @@ Another options:
 */
 $stable: #FCEBB6;
 $energized: #F07818;
-$calm: #78C0A8;
+$calm: #038675;
+$positive: #352B39;
+$turquoise: #78C0A8;
 $grey: #f8f8f8;
 $gold: #F0A830;
 $logo-height: 500px;
@@ -86,9 +88,13 @@ $ionicons-font-path: "../ionic/fonts" !default;
     background: url(../img/400.png);
 }
 
-.loggedBar{
-    background: url(../img/temps.png);
+.bar-logged{
+    background: url(../img/402.png);
+    background-position: 44px;
     .title{
+        color: $light;
+    }
+    .button{
         color: $light;
     }
 }
@@ -98,7 +104,7 @@ $ionicons-font-path: "../ionic/fonts" !default;
 }
 
 .page{
-    background: $stable;
+    background: lighten($turquoise, 20%);
     .card{
         background: $grey;
     }
@@ -113,4 +119,14 @@ $ionicons-font-path: "../ionic/fonts" !default;
     height: $logo-height;
     background: url(../img/logo.png) no-repeat center top;
     left: 50%;
+}
+
+.user{
+    font-weight: bold;
+    .time{
+        font-weight: lighter;
+        font-size: smaller;
+        font-stretch: condensed;
+        color: #aaa;
+    }
 }

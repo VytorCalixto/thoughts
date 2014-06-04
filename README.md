@@ -15,7 +15,7 @@ Don't limit your thoughts to yourself, share it. Not only people will see how di
 * People think **all** the time. Thoughts are an unlimited resource. Why not share?
 * Great way of reminding things you said/thought a long time ago and totally forgotted. Like your keys. And other stuff.
 * You can use it like your digital agenda and let EVERYBODY know what you will do and where you will be.
-* Great way to know if you have chances with your crush.
+* Great way to know if you have chances with your crush (and it's way better than asking if you have chances).
 
 ## F.A.Q.
 
