@@ -1,0 +1,12 @@
+<div class="user">
+    {{getUserByEmail(thought.userEmail)}} thought:
+    <div class="time">
+        {{thought.hora}} {{thought.data}}
+    </div>
+</div>
+<div class="padding item-text-wrap">
+    <p>{{thought.text}}</p>
+    <div class="item-note">
+        <ng-pluralize count="comments(thought.$id)" when="{'0': 'No comments', '1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
+    </div>
+</div>

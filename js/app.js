@@ -47,7 +47,7 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 views: {
                     'tab-my-thoughts': {
                         templateUrl:'templates/tab-my-thoughts.html',
-                        controller: ''
+                        controller: 'ThoughtsCtrl'
                     }
                 }
             })
@@ -56,7 +56,7 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 views: {
                     'tab-account': {
                         templateUrl:'templates/tab-account.html',
-                        controller: ''
+                        controller: 'AccountCtrl'
                     }
                 }
             })

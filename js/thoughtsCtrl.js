@@ -7,6 +7,16 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicM
     $scope.$root.cls='bar-logged';
     $scope.thoughts = $firebase(new Firebase('https://socialthoughts.firebaseio.com/thoughts'));
     $scope.users = $firebase(new Firebase('https://socialthoughts.firebaseio.com/users'));
+    $scope.myThoughts = getMyThoughts();
+
+    var getMyThoughts = function(){
+        var myThoughts = [];
+        for(var key in $scope.thoughts){
+            if($scope.thoughts[key].userEmail===$rootScope.user.email){
+                myThoughts.push($scope.thoughts[key]);
+            }
+        }
+    };
     
     $scope.getUserByEmail = function(userEmail){
         for(var i in $scope.users){
