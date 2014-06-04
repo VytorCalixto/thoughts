@@ -11,7 +11,7 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicM
     
 
     $scope.getUserByEmail = function(userEmail){
-        Users.getUserByEmail(userEmail);
+        return Users.getUserByEmail(userEmail).email;
     };
     
     $scope.createNewThought = function(thought) {
