@@ -10,8 +10,8 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicM
     $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
     
 
-    $scope.getUserByEmail = function(userEmail){
-        var user = Users.getUserByEmail(userEmail);
+    $scope.getUserByEmail = function(email){
+        var user = Users.getUserByEmail(email);
         return user.username;
     };
     

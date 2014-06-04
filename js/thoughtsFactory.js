@@ -8,6 +8,7 @@ stApp.factory('Thoughts', function($firebase){
 		getUserThoughts: function(email){
 			var userThoughts = [];
 			for(var key in thoughts){
+				console.log(thoughts[key].userEmail + ' ' + email);
 				if(thoughts[key].userEmail===email){
 					userThoughts.push(thoughts[key]);
 				}
