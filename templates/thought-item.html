@@ -7,10 +7,6 @@
 <div class="padding item-text-wrap">
     <p>{{thought.text}}</p>
     <div class="item-note">
-        <ng-pluralize count="comments(thought.$id)" when="{'0': 'No comments', '1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
+        <ng-pluralize count="countComments(thought.$id)" when="{'0': 'No comments', '1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
     </div>
-</div>
-<div class="">
-    <a href="{{path}}/{{thought.$id}}" class="button button-outline button-calm icon ion-reply button-small">Comment</a>
-    <a class="button button-outline button-energized icon ion-star button-small">Favorite</a>
 </div>

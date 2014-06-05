@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicModal, $location, Users, Thoughts) {
-    $scope.$root.cls='bar-logged';
+stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
+        $ionicModal, $location, Users, Thoughts, Comments) {
+    $scope.$root.cls = 'bar-logged';
     $scope.thoughts = Thoughts.all();
     $scope.users = Users.all();
     $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
     $scope.path = $location.absUrl();
-    
 
-    $scope.getUserByEmail = function(email){
+
+    $scope.getUserByEmail = function(email) {
         var user = Users.getUserByEmail(email);
         return user.username;
     };
-    
+
     $scope.createNewThought = function(thought) {
         Thoughts.push({
             text: thought.text,
@@ -41,8 +42,8 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase, $ionicM
     $scope.closeNewThought = function(text) {
         $scope.thoughtModal.hide();
     };
-    
-    $scope.comments = function(thoughtId){
-        return 0;
+
+    $scope.countComments = function(thoughtId) {
+        return Comments.getThoughtComments(thoughtId).length;
     };
 })

@@ -60,6 +60,15 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+            .state('home.tab.my-thought-detail', {
+                url: '/my-thoughts/:thoughtId',
+                views: {
+                    'tab-my-thoughts':{
+                        templateUrl: 'templates/tabs/thought-detail.html',
+                        controller: 'ThoughtDetailCtrl'
+                    }
+                }
+            })
             .state('home.tab.account', {
                 url: '/account',
                 views: {

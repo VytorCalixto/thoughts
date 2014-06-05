@@ -12,6 +12,7 @@
             </ion-item>
             <ion-item ng-repeat="thought in thoughts| orderByPriority">
                 <ng-include src="'templates/thought-item.html'"></ng-include>
+                <ng-include src="'templates/thought-buttons.html'"></ng-include>
             </ion-item>
         </ion-list>
     </ion-content>
