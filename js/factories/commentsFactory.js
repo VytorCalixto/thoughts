@@ -16,8 +16,10 @@ stApp.factory('Comments', function($firebase) {
         getThoughtComments: function(thoughtKey) {
             var thComments = [];
             for (var key in comments) {
-                if (comments[key].thoughtId === thoughtKey) {
-                    thComments.push(comments[key]);
+                if(comments[key] !== null){
+                    if (comments[key].thoughtId === thoughtKey) {
+                        thComments.push(comments[key]);
+                    }
                 }
             }
             return thComments;

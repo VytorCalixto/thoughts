@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
-        $ionicModal, $location, Users, Thoughts, Comments) {
+        $ionicModal, $location, Users, Thoughts, Comments, Favorites) {
     $scope.$root.cls = 'bar-logged';
     $scope.thoughts = Thoughts.all();
     $scope.users = Users.all();
@@ -16,13 +16,20 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
         var user = Users.getUserByEmail(email);
         return user.username;
     };
-
+    
+    $scope.returnDate = function(dateString){
+        return new Date(dateString).toLocaleDateString();
+    };
+    
+    $scope.returnTime = function(dateString){
+        return new Date(dateString).toLocaleTimeString();
+    };
+    
     $scope.createNewThought = function(thought) {
         Thoughts.push({
             text: thought.text,
             userEmail: $rootScope.user.email,
-            data: new Date().toLocaleDateString(),
-            hora: new Date().toLocaleTimeString()
+            date: new Date().toISOString()
         });
         thought.text = '';
         $scope.thoughtModal.hide();
@@ -45,5 +52,26 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
 
     $scope.countComments = function(thoughtId) {
         return Comments.getThoughtComments(thoughtId).length;
+    };
+    
+    $scope.getIfUserFavoritedThought = function(thoughtId){
+        return Favorites.getIfUserFavoritedThought(thoughtId, $rootScope.user.email);
+    };
+    
+    $scope.countFavorites = function(thoughtId){
+        return Favorites.getThoughtFavorites(thoughtId).length;
+    };
+    
+    $scope.favorite= function(thoughtId){
+        Favorites.push({
+            thoughtId: thoughtId,
+            userEmail: $rootScope.user.email,
+            date: new Date().toISOString()
+        });
+        $scope.getIfUserFavoritedThought(thoughtId);
+    };
+    
+    $scope.unfavorite= function(thoughtId){
+        Favorites.remove(thoughtId, $rootScope.user.email);
     };
 })

@@ -48,7 +48,8 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location,
             email: user.email,
             password: user.password
         });
-        $location.path('home/tab/dashboard')
+        //Checar se o login foi bem sucedido
+        $location.path('home/tab/dashboard');
         user.email = "";
         user.password = "";
     };

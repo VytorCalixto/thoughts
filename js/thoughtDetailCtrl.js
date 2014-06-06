@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtDetailCtrl', function($scope, $rootScope, $stateParams, Thoughts, Users, Comments){
+stApp.controller('ThoughtDetailCtrl', function($scope, $rootScope, $stateParams,
+Thoughts, Users, Comments, Favorites){
     $scope.thought = Thoughts.get($stateParams.thoughtId);
     $scope.comments = Comments.getThoughtComments($stateParams.thoughtId);
     
@@ -20,10 +21,21 @@ stApp.controller('ThoughtDetailCtrl', function($scope, $rootScope, $stateParams,
             text: newComment.text,
             thoughtId: $stateParams.thoughtId,
             userEmail: $rootScope.user.email,
-            data: new Date().toLocaleDateString(),
-            time: new Date().toLocaleTimeString()
+            date: new Date().toISOString()
         });
         newComment.text = '';
         $scope.comments = Comments.getThoughtComments($stateParams.thoughtId);
+    };
+    
+    $scope.returnDate = function(dateString){
+        return new Date(dateString).toLocaleDateString();
+    };
+    
+    $scope.returnTime = function(dateString){
+        return new Date(dateString).toLocaleTimeString();
+    };
+    
+    $scope.countFavorites = function(thoughtId){
+        return Favorites.getThoughtFavorites(thoughtId).length;
     };
 })

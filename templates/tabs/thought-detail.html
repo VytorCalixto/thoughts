@@ -10,7 +10,7 @@
                 <div class="user">
                     {{getUserByEmail(comment.userEmail)}} thought:
                     <div class="time">
-                        {{comment.time}} {{comment.data}}
+                        {{returnDate(comment.date)}} @ {{returnTime(comment.date)}}
                     </div>
                 </div>
                 <div class="padding item-text-wrap">

@@ -1,4 +1,14 @@
 <div class="">
-    <a href="{{path}}/{{thought.$id}}" class="button button-outline button-calm icon ion-reply button-small">Comment</a>
-    <a class="button button-outline button-energized icon ion-star button-small">Favorite</a>
+    <a href="{{path}}/{{thought.$id}}" class="button button-outline button-calm
+       icon ion-reply button-small">
+        Comment
+    </a>
+    <button ng-click="favorite(thought.$id)" ng-if="!getIfUserFavoritedThought(thought.$id)"
+            class="button button-outline button-energized icon ion-star button-small">
+        Favorite
+    </button>
+    <button ng-click="unfavorite(thought.$id)" ng-if="getIfUserFavoritedThought(thought.$id)"
+            class="button button-outline button-assertive icon ion-ios7-star-outline button-small">
+        Unfavorite
+    </button>
 </div>

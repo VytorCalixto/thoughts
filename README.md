@@ -1,3 +1,4 @@
+[![GitHub version](https://badge.fury.io/gh/vytorcalixto%2Fthoughts.svg)](http://badge.fury.io/gh/vytorcalixto%2Fthoughts)
 # Thoughts
 
 Test app with Ionic, Firebase, Angular.JS and Cordova.
