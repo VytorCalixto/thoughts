@@ -7,7 +7,7 @@ stApp.controller('MenuCtrl',function($scope, $rootScope, $firebase, $location){
     var ref = new Firebase('https://socialthoughts.firebaseio.com/');
 
     $scope.logout = function(){
-        $rootScope.auth.logout();
+        $rootScope.auth.$logout();
 	$location.path('/signup');
     };
 })

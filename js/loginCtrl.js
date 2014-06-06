@@ -3,28 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location, $ionicPopup, Users) {
-    $scope.$root.cls='bar-calm';
-    var ref = new Firebase('https://socialthoughts.firebaseio.com/users');
+stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin, $location, $ionicPopup, Users) {
+    $scope.$root.cls = 'bar-calm';
+    var ref = new Firebase('https://socialthoughts.firebaseio.com/');
     var users = Users.all();
     $rootScope.user = {};
-    $rootScope.auth = new FirebaseSimpleLogin(ref, function(error, user) {
-        if (error) {
-            // an error occurred while attempting login
-            console.log(error);
-        } else if (user) {
-            // user authenticated with Firebase
-            console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-            $rootScope.user = user;
-            $location.path('home/tab/dashboard');
-        } else {
-            // user is logged out
-            console.log('logged out');
-        }
+    $rootScope.auth = $firebaseSimpleLogin(ref);
+
+
+    $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
+        $rootScope.user = user;
+        $location.path('home/tab/dashboard');
+    });
+    
+    $rootScope.$on("$firebaseSimpleLogin:logout", function(e, user) {
+        console.log('Logged Out');
     });
 
     $scope.createNewUser = function(newUser) {
-        $rootScope.auth.createUser(newUser.email, newUser.password, function(error, user) {
+        $rootScope.auth.$createUser(newUser.email, newUser.password, function(error, user) {
             if (!error) {
                 console.log('User Id: ' + user.uid + ', Email: ' + user.email);
             } else {
@@ -40,16 +37,14 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $location,
         newUser.username = "";
         newUser.email = "";
         newUser.password = "";
-        $location.path('home/dashboard');
+        //$location.path('home/dashboard');
     };
 
     $scope.login = function(user) {
-        $rootScope.auth.login('password', {
+        $rootScope.auth.$login('password', {
             email: user.email,
             password: user.password
         });
-        //Checar se o login foi bem sucedido
-        $location.path('home/tab/dashboard');
         user.email = "";
         user.password = "";
     };
