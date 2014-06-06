@@ -10,20 +10,6 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
     $scope.users = Users.all();
     $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
     $scope.path = $location.absUrl();
-
-
-    $scope.getUserByEmail = function(email) {
-        var user = Users.getUserByEmail(email);
-        return user.username;
-    };
-    
-    $scope.returnDate = function(dateString){
-        return new Date(dateString).toLocaleDateString();
-    };
-    
-    $scope.returnTime = function(dateString){
-        return new Date(dateString).toLocaleTimeString();
-    };
     
     $scope.createNewThought = function(thought) {
         Thoughts.push({
@@ -50,28 +36,4 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
         $scope.thoughtModal.hide();
     };
 
-    $scope.countComments = function(thoughtId) {
-        return Comments.getThoughtComments(thoughtId).length;
-    };
-    
-    $scope.getIfUserFavoritedThought = function(thoughtId){
-        return Favorites.getIfUserFavoritedThought(thoughtId, $rootScope.user.email);
-    };
-    
-    $scope.countFavorites = function(thoughtId){
-        return Favorites.getThoughtFavorites(thoughtId).length;
-    };
-    
-    $scope.favorite= function(thoughtId){
-        Favorites.push({
-            thoughtId: thoughtId,
-            userEmail: $rootScope.user.email,
-            date: new Date().toISOString()
-        });
-        $scope.getIfUserFavoritedThought(thoughtId);
-    };
-    
-    $scope.unfavorite= function(thoughtId){
-        Favorites.remove(thoughtId, $rootScope.user.email);
-    };
 })

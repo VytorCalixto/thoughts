@@ -78,6 +78,15 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
+            .state('home.tab.favorites', {
+                url: '/account/:userEmail',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/user-favorites.html',
+                        controller: 'FavoriteThoughtsCtrl'
+                    }
+                }
+            })
 
     $urlRouterProvider.otherwise('/signup');
 });
