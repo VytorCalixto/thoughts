@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('MenuCtrl',function($scope, $rootScope, $firebase, $location){
-    var ref = new Firebase('https://socialthoughts.firebaseio.com/');
-
+stApp.controller('MenuCtrl',function($scope, $rootScope){
     $scope.logout = function(){
         $rootScope.auth.$logout();
-	$location.path('/signup');
     };
 })

@@ -6,7 +6,6 @@
 stApp.controller('FavoriteThoughtsCtrl', function($stateParams, $scope, $location,
         Thoughts, Favorites, Users) {
     $scope.user = Users.getUserByEmail($stateParams.userEmail);
-    $scope.path = $location.absUrl();
 
     var getUserFavoritesThoughts = function() {
         var usrFavorites = Favorites.getUserFavorites($stateParams.userEmail);

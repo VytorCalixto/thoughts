@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users, Comments, Favorites) {
-
+stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users,
+        $location, Comments, Favorites) {
+    $scope.path = $location.absUrl();
     $scope.getUserByEmail = function(email) {
         var user = Users.getUserByEmail(email);
         return user.username;
@@ -17,20 +18,20 @@ stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users, Co
     $scope.returnTime = function(dateString) {
         return new Date(dateString).toLocaleTimeString();
     };
-    
+
     $scope.countComments = function(thoughtId) {
         return Comments.getThoughtComments(thoughtId).length;
     };
-    
-    $scope.getIfUserFavoritedThought = function(thoughtId){
+
+    $scope.getIfUserFavoritedThought = function(thoughtId) {
         return Favorites.getIfUserFavoritedThought(thoughtId, $rootScope.user.email);
     };
-    
-    $scope.countFavorites = function(thoughtId){
+
+    $scope.countFavorites = function(thoughtId) {
         return Favorites.getThoughtFavorites(thoughtId).length;
     };
-    
-    $scope.favorite= function(thoughtId){
+
+    $scope.favorite = function(thoughtId) {
         Favorites.push({
             thoughtId: thoughtId,
             userEmail: $rootScope.user.email,
@@ -38,8 +39,8 @@ stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users, Co
         });
         $scope.getIfUserFavoritedThought(thoughtId);
     };
-    
-    $scope.unfavorite= function(thoughtId){
+
+    $scope.unfavorite = function(thoughtId) {
         Favorites.remove(thoughtId, $rootScope.user.email);
     };
 })

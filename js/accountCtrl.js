@@ -3,11 +3,12 @@ stApp.controller('AccountCtrl', function($rootScope, $scope, $location, $statePa
 
     if($stateParams.userEmail === undefined){
         $scope.user = Users.getUserByEmail($rootScope.user.email);
+        $scope.ifLinkedHere = false;
     }else{
         $scope.user = Users.getUserByEmail($stateParams.userEmail);
+        $scope.ifLinkedHere = true;
     }
     $scope.userThoughts = Thoughts.getUserThoughts($scope.user.email);
-    $scope.path = $location.absUrl();
     $scope.userAccountPath = $location.absUrl();
 
 })

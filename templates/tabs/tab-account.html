@@ -1,25 +1,28 @@
-<ion-view title="{{user.username}} Account">
-    <ion-nav-buttons side="left">
+<ion-view title="">
+    <ion-nav-buttons ng-if="!ifLinkedHere()" side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-content class="page padding">
-        <div class="card">
-        	<div class="item item-divider"></div>
-        	<div class="user item">
-        		Username: {{user.username}}
-        		<br/>
-        		E-mail: {{user.email}}
-        	</div>
-                <div class="item" >
-                    <div class="button-bar">
-                        <a class="button button-outline button-royal icon ion-person-stalker">Stalking</a>
-                        <a class="button button-outline button-royal icon ion-person-stalker">Stalkers</a>
-                        <a href="#/home/tab/account/favorites/{{user.email}}" class="button button-outline button-royal icon ion-star">Favorites</a>
-                    </div>
-                </div>
-        </div>
-        
+    <ion-content class="page padding-vertical">
         <ion-list class="list-inset">
+            <div class="item item-divider"></div>
+            <div class="user item center">
+                {{user.username}}
+                <br/>
+                {{user.email}}
+            </div>
+            <div class="item button-bar">
+                <a class="button button-outline button-full button-royal icon ion-person-stalker">
+                    Stalking
+                </a>
+                <a class="button button-outline button-full button-royal icon ion-person-stalker">
+                    Stalkers
+                </a>
+                <a href="#/home/tab/account/favorites/{{user.email}}" 
+                   class="button button-outline button-full button-royal icon ion-star">
+                    Favorites
+                </a>
+            </div>
+            <div class="item-divider"></div>
             <ion-item ng-repeat="thought in userThoughts">
                 <ng-include src="'templates/thought-item.html'"></ng-include>
                 <ng-include src="'templates/thought-buttons.html'"></ng-include>

@@ -90,7 +90,7 @@ $ionicons-font-path: "../ionic/fonts" !default;
 
 .bar-logged{
     background: url(../img/402.png);
-    background-position: 44px;
+    background-position: 0px;
     .title{
         color: $light;
     }
@@ -121,16 +121,26 @@ $ionicons-font-path: "../ionic/fonts" !default;
     left: 50%;
 }
 
+.note{
+    font-weight: lighter;
+    font-size: smaller;
+    font-stretch: condensed;
+    color: #aaa;
+}
+
 .user{
     font-weight: bold;
     .time{
-        font-weight: lighter;
-        font-size: smaller;
-        font-stretch: condensed;
-        color: #aaa;
+        @extend .note;
     }
     a{
         text-decoration: none;
         color: $royal;
     }
+}
+
+.popup{
+    -webkit-filter:blur(20px);
+    opacity: .25;
+    background-color: #f7f7f7;
 }

@@ -7430,7 +7430,7 @@ a.button {
 
 .bar-logged {
   background: url(../img/402.png);
-  background-position: 44px; }
+  background-position: 0px; }
   .bar-logged .title {
     color: white; }
   .bar-logged .button {
@@ -7453,15 +7453,21 @@ a.button {
   background: url(../img/logo.png) no-repeat center top;
   left: 50%; }
 
+.note, .user .time {
+  font-weight: lighter;
+  font-size: smaller;
+  font-stretch: condensed;
+  color: #aaa; }
+
 .user {
   font-weight: bold; }
-  .user .time {
-    font-weight: lighter;
-    font-size: smaller;
-    font-stretch: condensed;
-    color: #aaa; }
   .user a {
     text-decoration: none;
     color: #352b39; }
+
+.popup {
+  -webkit-filter: blur(20px);
+  opacity: .25;
+  background-color: #f7f7f7; }
 
 /*# sourceMappingURL=style.css.map */

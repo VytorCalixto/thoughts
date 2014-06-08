@@ -27,6 +27,8 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase,
                 template: 'Please, try again.',
                 okType: 'button-assertive'
             });
+            $scope.user.password = '';
+            return;
         } else {
             $ionicPopup.alert({
                 title: 'Error',
@@ -37,17 +39,13 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase,
     });
 
     $rootScope.$on("$firebaseSimpleLogin:logout", function(e, user) {
-        console.log('Logged Out');
+        if(($location.url() !== '/signup') && ($location.url() !== '/login')){
+            $location.path('/signup');
+        }
     });
 
     $scope.createNewUser = function(newUser) {
-        $rootScope.auth.$createUser(newUser.email, newUser.password, function(error, user) {
-            if (!error) {
-                console.log('User Id: ' + user.uid + ', Email: ' + user.email);
-            } else {
-                console.log(error);
-            }
-        });
+        $rootScope.auth.$createUser(newUser.email, newUser.password);
         Users.push({
             email: newUser.email,
             username: newUser.username/*,
@@ -65,10 +63,10 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase,
             email: user.email,
             password: user.password
         });
-        user.email = '';
-        user.password = '';
         $ionicLoading.show({
             template: '<i class="icon ion-loading-c"></i> Logging you in...'
         });
+        /*$scope.user.email = '';
+        $scope.user.password = '';*/
     };
 })

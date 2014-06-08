@@ -8,7 +8,7 @@
             <div class="item item-divider"></div>
             <div class="item" ng-repeat="comment in comments">
                 <div class="user">
-                    {{getUserByEmail(comment.userEmail)}} thought:
+                    {{getUserByEmail(comment.userEmail)}} said:
                     <div class="time">
                         {{returnDate(comment.date)}} @ {{returnTime(comment.date)}}
                     </div>

@@ -5,7 +5,7 @@
     <ion-nav-buttons side="right">
         <a href="" class="button button-clear icon ion-compose" ng-click="newThought()"></a>
     </ion-nav-buttons>
-    <ion-content class="page padding">
+    <ion-content class="page padding-vertical">
         <ion-list class="list-inset">
             <ion-item class="item-divider">
                 Thoughts Stream
@@ -22,12 +22,12 @@
     <div class="modal">
         <ion-header-bar class="bar-secondary">
             <h1 class="title">New Thought</h1>
-            <button class="button button-clear" ng-click="closeNewThought(thought.text)">Cancelar</button>
+            <button class="button button-clear button-assertive" ng-click="closeNewThought(thought.text)">Cancelar</button>
         </ion-header-bar>
 
-        <ion-content class="padding">
+        <ion-content class="padding-vertical">
             <form ng-submit="createNewThought(thought)">
-                <div class="list padding">
+                <div class="list">
                     <label class="item item-input">
                         <input type="text" placeholder="Speak your mind..." ng-model="thought.text">
                     </label>

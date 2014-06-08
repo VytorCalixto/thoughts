@@ -7,7 +7,7 @@
     </div>
     <div class="padding item-text-wrap">
         <p>{{thought.text}}</p>
-        <div class="item-note">
+        <div class="note">
             <ng-pluralize count="countComments(thought.$id)" when="{'0': 'No comments', '1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
             and
             <ng-pluralize count="countFavorites(thought.$id)" when="{'0': 'nobody favorited', '1': '1 person favorited', 'other': '{} people favorited'}"></ng-pluralize>
