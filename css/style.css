@@ -7460,5 +7460,8 @@ a.button {
     font-size: smaller;
     font-stretch: condensed;
     color: #aaa; }
+  .user a {
+    text-decoration: none;
+    color: #352b39; }
 
 /*# sourceMappingURL=style.css.map */

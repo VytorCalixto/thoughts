@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseSimpleLogin, $location, $ionicPopup, Users) {
+stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase,
+        $firebaseSimpleLogin, $location, $ionicPopup, Users, $ionicLoading) {
     $scope.$root.cls = 'bar-calm';
     var ref = new Firebase('https://socialthoughts.firebaseio.com/');
     var users = Users.all();
@@ -13,9 +14,28 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseS
 
     $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
         $rootScope.user = user;
+        $ionicLoading.hide();
         $location.path('home/tab/dashboard');
     });
-    
+
+    $rootScope.$on("$firebaseSimpleLogin:error", function(e, error) {
+        $ionicLoading.hide();
+        console.log(error.code);
+        if ((error.code === 'INVALID_EMAIL') || (error.code === 'INVALID_PASSWORD')) {
+            $ionicPopup.alert({
+                title: 'Invalid e-mail/password',
+                template: 'Please, try again.',
+                okType: 'button-assertive'
+            });
+        } else {
+            $ionicPopup.alert({
+                title: 'Error',
+                template: 'An error ocurred. Please, try again.',
+                okType: 'button-assertive'
+            });
+        }
+    });
+
     $rootScope.$on("$firebaseSimpleLogin:logout", function(e, user) {
         console.log('Logged Out');
     });
@@ -45,7 +65,10 @@ stApp.controller('LoginCtrl', function($scope, $rootScope, $firebase, $firebaseS
             email: user.email,
             password: user.password
         });
-        user.email = "";
-        user.password = "";
+        user.email = '';
+        user.password = '';
+        $ionicLoading.show({
+            template: '<i class="icon ion-loading-c"></i> Logging you in...'
+        });
     };
 })

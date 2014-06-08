@@ -1,6 +1,6 @@
 <div ng-controller="ThoughtItemButtonCtrl">
     <div class="user">
-        {{getUserByEmail(thought.userEmail)}} thought:
+        <a href="{{path}}/user/{{thought.userEmail}}">{{getUserByEmail(thought.userEmail)}}</a> thought:
         <div class="time">
             {{returnDate(thought.date)}} @ {{returnTime(thought.date)}}
         </div>

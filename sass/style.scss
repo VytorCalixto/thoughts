@@ -129,4 +129,8 @@ $ionicons-font-path: "../ionic/fonts" !default;
         font-stretch: condensed;
         color: #aaa;
     }
+    a{
+        text-decoration: none;
+        color: $royal;
+    }
 }

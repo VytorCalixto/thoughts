@@ -10,7 +10,7 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $firebase,
     $scope.users = Users.all();
     $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
     $scope.path = $location.absUrl();
-    
+
     $scope.createNewThought = function(thought) {
         Thoughts.push({
             text: thought.text,

@@ -1,4 +1,4 @@
-<ion-view title="My Account">
+<ion-view title="{{user.username}} Account">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
@@ -12,11 +12,18 @@
         	</div>
                 <div class="item" >
                     <div class="button-bar">
-                        <a class="button button-outline button-royal icon ion-person-stalker">Stalking: </a>
-                        <a class="button button-outline button-royal icon ion-person-stalker">Stalkers: </a>
-                        <a href="#/home/tab/account/{{user.email}}" class="button button-outline button-royal icon ion-star">Favorites: </a>
+                        <a class="button button-outline button-royal icon ion-person-stalker">Stalking</a>
+                        <a class="button button-outline button-royal icon ion-person-stalker">Stalkers</a>
+                        <a href="#/home/tab/account/favorites/{{user.email}}" class="button button-outline button-royal icon ion-star">Favorites</a>
                     </div>
                 </div>
         </div>
+        
+        <ion-list class="list-inset">
+            <ion-item ng-repeat="thought in userThoughts">
+                <ng-include src="'templates/thought-item.html'"></ng-include>
+                <ng-include src="'templates/thought-buttons.html'"></ng-include>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

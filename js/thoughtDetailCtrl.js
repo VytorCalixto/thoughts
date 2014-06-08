@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 stApp.controller('ThoughtDetailCtrl', function($scope, $rootScope, $stateParams,
-Thoughts, Users, Comments, Favorites){
+        Thoughts, Comments, Users) {
     $scope.thought = Thoughts.get($stateParams.thoughtId);
     $scope.comments = Comments.getThoughtComments($stateParams.thoughtId);
-    
-    $scope.addComment = function(newComment){
+
+    $scope.addComment = function(newComment) {
         Comments.push({
             text: newComment.text,
             thoughtId: $stateParams.thoughtId,
@@ -17,5 +17,18 @@ Thoughts, Users, Comments, Favorites){
         });
         newComment.text = '';
         $scope.comments = Comments.getThoughtComments($stateParams.thoughtId);
+    };
+    
+    $scope.getUserByEmail = function(email) {
+        var user = Users.getUserByEmail(email);
+        return user.username;
+    };
+
+    $scope.returnDate = function(dateString) {
+        return new Date(dateString).toLocaleDateString();
+    };
+
+    $scope.returnTime = function(dateString) {
+        return new Date(dateString).toLocaleTimeString();
     };
 })

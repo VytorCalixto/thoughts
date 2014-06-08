@@ -43,11 +43,20 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             })
             .state('home.tab.thought-detail', {
-                url: '/dashboard/:thoughtId',
+                url: '/dashboard/thought/:thoughtId',
                 views: {
-                    'tab-dashboard':{
+                    'tab-dashboard': {
                         templateUrl: 'templates/tabs/thought-detail.html',
                         controller: 'ThoughtDetailCtrl'
+                    }
+                }
+            })
+            .state('home.tab.user-dashboard', {
+                url: '/dashboard/user/:userEmail',
+                views: {
+                    'tab-dashboard': {
+                        templateUrl: 'templates/tabs/tab-account.html',
+                        controller: 'AccountCtrl'
                     }
                 }
             })
@@ -61,11 +70,20 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             })
             .state('home.tab.my-thought-detail', {
-                url: '/my-thoughts/:thoughtId',
+                url: '/my-thoughts/thought/:thoughtId',
                 views: {
-                    'tab-my-thoughts':{
+                    'tab-my-thoughts': {
                         templateUrl: 'templates/tabs/thought-detail.html',
                         controller: 'ThoughtDetailCtrl'
+                    }
+                }
+            })
+            .state('home.tab.user-my-thoughts', {
+                url: '/my-thoughts/user/:userEmail',
+                views: {
+                    'tab-my-thoughts': {
+                        templateUrl: 'templates/tabs/tab-account.html',
+                        controller: 'AccountCtrl'
                     }
                 }
             })
@@ -78,12 +96,39 @@ stApp.config(function($stateProvider, $urlRouterProvider) {
                     }
                 }
             })
-            .state('home.tab.favorites', {
-                url: '/account/:userEmail',
+            .state('home.tab.user-account', {
+                url: '/account/user/:userEmail',
                 views: {
                     'tab-account': {
-                        templateUrl: 'templates/user-favorites.html',
+                        templateUrl: 'templates/tabs/tab-account.html',
+                        controller: 'AccountCtrl'
+                    }
+                }
+            })
+            .state('home.tab.account-thought-detail', {
+                url: '/account/thought/:thoughtId',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/tabs/thought-detail.html',
+                        controller: 'ThoughtDetailCtrl'
+                    }
+                }
+            })
+            .state('home.tab.favorites', {
+                url: '/account/favorites/:userEmail',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/tabs/user-favorites.html',
                         controller: 'FavoriteThoughtsCtrl'
+                    }
+                }
+            })
+            .state('home.tab.favorites-thought-detail', {
+                url: '/account/favorites/*path/thought/:thoughtId',
+                views: {
+                    'tab-account': {
+                        templateUrl: 'templates/tabs/thought-detail.html',
+                        controller: 'ThoughtDetailCtrl'
                     }
                 }
             })
