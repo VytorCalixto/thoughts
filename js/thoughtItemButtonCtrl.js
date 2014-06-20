@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users,
-        $location, Comments, Favorites) {
+        $location, Comments, Favorites, $ionicModal, $ionicScrollDelegate) {
     $scope.path = $location.absUrl();
     $scope.getUserByEmail = function(email) {
         var user = Users.getUserByEmail(email);
@@ -23,7 +23,7 @@ stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users,
         return Comments.getThoughtComments(thoughtId).length;
     };
 
-    $scope.getIfUserFavoritedThought = function(thoughtId) {
+    $scope.isFavoritedThought = function(thoughtId) {
         return Favorites.getIfUserFavoritedThought(thoughtId, $rootScope.user.email);
     };
 
@@ -42,5 +42,36 @@ stApp.controller('ThoughtItemButtonCtrl', function($scope, $rootScope, Users,
 
     $scope.unfavorite = function(thoughtId) {
         Favorites.remove(thoughtId, $rootScope.user.email);
+    };
+
+    $ionicModal.fromTemplateUrl('thought-detail.html', function(modal) {
+        $scope.thoughtDetailModal = modal;
+    }, {
+        scope: $scope,
+        animation: 'slide-in-up'
+    });
+
+    $scope.openThoughtDetail = function(id) {
+        $scope.thoughtDetailModal.show();
+    };
+
+    $scope.closeThoughtDetail = function() {
+        $scope.thoughtDetailModal.hide();
+    };
+
+    $scope.$on('modal.shown', function() {
+        $scope.comments = Comments.getThoughtComments($scope.thought.$id);
+    });
+    
+    $scope.addComment = function(newComment) {
+        Comments.push({
+            text: newComment.text,
+            thoughtId: $scope.thought.$id,
+            userEmail: $rootScope.user.email,
+            date: new Date().toISOString()
+        });
+        newComment.text = '';
+        $scope.comments = Comments.getThoughtComments($scope.thought.$id);
+        $ionicScrollDelegate.$getByHandle('modalScroll').scrollBottom(true);
     };
 })

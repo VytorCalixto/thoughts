@@ -10,34 +10,12 @@
             <ion-item class="item-divider">
                 Thoughts Stream
             </ion-item>
-            <ion-item ng-repeat="thought in thoughts| orderByPriority">
-                <ng-include src="'templates/thought-item.html'"></ng-include>
-                <ng-include src="'templates/thought-buttons.html'"></ng-include>
+            <ion-item ng-repeat="thought in thoughts| orderByPriority | orderBy: '-date'">
+                <div ng-controller="ThoughtItemButtonCtrl">
+                    <ng-include src="'templates/thought-item.html'"></ng-include>
+                    <ng-include src="'templates/thought-buttons.html'"></ng-include>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>
 </ion-view>
-
-<script id="new-thought.html" type="text/ng-template">
-    <div class="modal">
-        <ion-header-bar class="bar-secondary">
-            <h1 class="title">New Thought</h1>
-            <button class="button button-clear button-assertive" ng-click="closeNewThought(thought.text)">Cancelar</button>
-        </ion-header-bar>
-
-        <ion-content class="padding-vertical">
-            <form ng-submit="createNewThought(thought)">
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="Speak your mind..." ng-model="thought.text">
-                    </label>
-                </div>
-                <div class="padding">
-                    <button type="submit" class="button button-block button-positive item icon ion-ios7-cloud-outline">
-                    Think
-                    </button>
-                </div>
-            </form>
-        </ion-content>
-    </div>
-</script>

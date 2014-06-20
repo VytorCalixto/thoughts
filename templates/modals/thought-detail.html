@@ -1,0 +1,33 @@
+<ion-header-bar class="bar-secondary">
+    <h1 class="title">Thought Detail</h1>
+    <button class="button button-clear button-assertive icon ion-ios7-close-empty" 
+            ng-click="closeThoughtDetail()"></button>
+</ion-header-bar>
+
+<ion-content class="has-footer" delegate-handle="modalScroll">
+    <div class="list">
+        <div class="item item-divider"></div>
+        <div class="item">
+            <ng-include src="'templates/thought-item.html'"></ng-include>
+        </div>
+        <div class="item item-divider" ></div>
+        <div class="item" ng-repeat="comment in comments| orderByPriority">
+            <div class="user">
+                {{getUserByEmail(comment.userEmail)}} said:
+                <div class="time">
+                    {{returnDate(comment.date)}} @ {{returnTime(comment.date)}}
+                </div>
+            </div>
+            <div class="padding item-text-wrap">
+                <p>{{comment.text}}</p>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer-bar class="bar-footer item-input-inset">
+    <label class="item-input-wrapper">
+        <input type="text" placeholder="Say something about this" ng-model="newComment.text">
+    </label>
+    <button class="button button-outline button-calm" ng-click="addComment(newComment)">Comment</button>
+</ion-footer-bar>
