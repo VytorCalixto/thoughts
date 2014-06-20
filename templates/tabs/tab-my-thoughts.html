@@ -10,9 +10,11 @@
         	<ion-item class="item-divider">
         		My Thoughts
         	</ion-item>
-        	<ion-item ng-repeat="thought in myThoughts | orderByPriority">
-        		<ng-include src="'templates/thought-item.html'"></ng-include>
-        		<ng-include src="'templates/thought-buttons.html'"></ng-include>
+        	<ion-item ng-repeat="thought in myThoughts | orderByPriority | orderBy:'-date'">
+                    <div ng-controller="ThoughtItemButtonCtrl">
+                            <ng-include src="'templates/thought-item.html'"></ng-include>
+                            <ng-include src="'templates/thought-buttons.html'"></ng-include>
+                    </div>
 		    </ion-item>
     	</ion-list>
     </ion-content>

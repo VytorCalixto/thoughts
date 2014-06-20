@@ -2,9 +2,11 @@
     <ion-content class="page padding-vertical">
         <ion-list class="list-inset">
             <ion-item class="item-divider">{{user.username}}'s favorites</ion-item>
-            <ion-item ng-repeat="thought in favoritesThoughts">
-                <ng-include src="'templates/thought-item.html'"></ng-include>
-                <ng-include src="'templates/thought-buttons.html'"></ng-include>
+            <ion-item ng-repeat="thought in favoritesThoughts | orderByPriority | orderBy:'-date'">
+                <div ng-controller="ThoughtItemButtonCtrl">
+                    <ng-include src="'templates/thought-item.html'"></ng-include>
+                    <ng-include src="'templates/thought-buttons.html'"></ng-include>
+                </div>
             </ion-item>
         </ion-list>
     </ion-content>

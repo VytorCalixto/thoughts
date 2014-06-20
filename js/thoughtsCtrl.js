@@ -44,5 +44,10 @@ stApp.controller('ThoughtsCtrl', function($scope, $rootScope, $ionicPopup,
     $scope.closeNewThought = function() {
         $scope.thoughtModal.hide();
     };
+    
+    $scope.$on('modal.hidden', function() {
+        $scope.thoughts = Thoughts.all();
+        $scope.myThoughts = Thoughts.getUserThoughts($rootScope.user.email);
+    });
 
 })
